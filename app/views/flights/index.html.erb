@@ -1,9 +1,9 @@
 <h1>Search for a flight</h1>
-<%= form_with(model: @flight, url: flights_path, method: "get") do |form| %>
+<%= form_with(model: @flight, url: flights_path, method: :get) do |form| %>
   <%= render partial: 'search_flight', locals: { form: form, available_dates: @available_dates, airport_options: @airport_options } %>
 <% end %>
 
 <h2>Available Flights</h2>
 <%= form_with(url: new_booking_path, method: :get) do |form| %>
-<%= render partial: 'available_flights', locals: { form: form, flights: @flights, num_passengers: @num_passengers } %>
+  <%= render partial: 'available_flights', locals: { form: form, flights: @flights, num_passengers: @num_passengers } %>
 <% end %>

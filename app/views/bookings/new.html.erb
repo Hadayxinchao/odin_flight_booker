@@ -1,0 +1,29 @@
+<%= link_to "Search flight", flights_path %>
+<h1>Personal Booking</h1>
+
+<%= render partial: 'flight_info', locals: { flight: @flight } %>
+
+<%= form_with model: @booking do |form| %>
+  <% @booking.passengers.each_with_index do |passenger, index| %>
+    <%= form.fields_for :passengers, passenger do |passenger_form| %>
+      <h3>Details for Passenger <%= "#{index + 1}" %></h3>
+      <div class="field">
+        <%= passenger_form.label :name %>
+        <%= passenger_form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= passenger_form.label :email %>
+        <%= passenger_form.text_field :email %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :flight_id, value: params[:selected_flight] %>
+  </div>
+
+  <div class="action">
+    <%= form.submit %>
+  </div>
+<% end %>

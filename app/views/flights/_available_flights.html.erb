@@ -1,11 +1,11 @@
 <table class="available_flights_table">
   <thead>
     <tr>
-      <td>Departure Airport</td>
-      <td>Arrival Airport </td>
-      <td>Start Day</td>
-      <td>Flight Duration</td>
-      <td>Flight ID</td>
+      <th>Departure Airport</th>
+      <th>Arrival Airport </th>
+      <th>Start Day</th>
+      <th>Flight Duration</th>
+      <th>Flight ID</th>
     </tr>
   </thead>
   <tbody>
@@ -29,5 +29,5 @@
 <%= form.hidden_field :num_passengers, value: num_passengers || 1 %>
 
 <div>
-  <%= form.submit "Continue to Booking"%>
+  <%= form.submit "Continue to Booking" %>
 </div>

@@ -1,0 +1,10 @@
+<%= link_to "Search flight", flights_path %>
+<h1>Booking Information</h1>
+<h2>Flight Information</h2>
+<%= render partial: 'flight_info', locals: { flight: Flight.find(@booking.flight_id)} %>
+
+<h2>Passenger Information</h2>
+<% @booking.passengers.each do |passenger| %>
+  <h3><%= passenger.name %></h3>
+  <p>Email: <%= passenger.email %></p>
+<% end %>
