@@ -15,13 +15,13 @@ Airport.create(code: 'ORD')
 flight1 = Flight.create(
   departure_airport: Airport.find_by(code: 'SFO'),
   arrival_airport: Airport.find_by(code: 'NYC'),
-  start_datetime: Time.now + 1.day,
+  start_date: Time.now + 1.day,
   duration: 300 # in minutes
 )
 
 flight2 = Flight.create(
   departure_airport: Airport.find_by(code: 'LAX'),
   arrival_airport: Airport.find_by(code: 'ORD'),
-  start_datetime: Time.now + 2.day,
+  start_date: Time.now + 2.day,
   duration: 270 # in minutes
 )

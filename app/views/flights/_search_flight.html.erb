@@ -1,0 +1,30 @@
+<div>
+  <%= form.label :departure_airport_id %>
+  <%= form.select :departure_airport_id, 
+    options_for_select(airport_options, selected: params[:departure_airport_id]),
+    { include_blank: 'Select Departure Airport'} %>
+</div>
+
+<div>
+  <%= form.label :arrival_airport_id %>
+  <%= form.select :arrival_airport_id, 
+    options_for_select(airport_options, selected: params[:arrival_airport_id]),
+    { include_blank: 'Select Arrival Airport'} %>
+</div>
+
+<div>
+  <%= form.label :num_passengers %>
+  <%= form.collection_select :num_passengers, (1..4), :to_i, :to_s,
+    { selected: @num_passengers || 1 } %>
+</div>
+
+<div class="field">
+  <%= form.label :start_date, 'Select a day:' %>
+  <%= form.select :start_date, 
+    options_for_select(available_dates.map{ |date| [date.strftime('%B %d, %Y'), date] }, selected: params[:start_date]),
+    { include_blank: 'Select a Day' } %>
+</div>
+
+<div class="actions">
+  <%= form.submit "Search", class: "btn btn-primary" %>
+</div>

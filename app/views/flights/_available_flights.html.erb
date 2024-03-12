@@ -1,0 +1,22 @@
+<table class="available_flights_table">
+  <thead>
+    <tr>
+      <td>Flight ID</td>
+      <td>Departure Airport</td>
+      <td>Arrival Airport </td>
+      <td>Start Day</td>
+      <td>Flight Duration</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% flights.each do |flight| %>
+    <tr>
+      <td><%= flight.id %></td>
+      <td><%= flight.departure_airport.code %></td>
+      <td><%= flight.arrival_airport.code %></td>
+      <td><%= flight.start_date %></td>
+      <td><%= flight.duration %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
