@@ -4,5 +4,6 @@
 <% end %>
 
 <h2>Available Flights</h2>
-
-<%= render partial: 'available_flights', locals: { flights: @flights, num_passengers: @num_passengers} %>
+<%= form_with(url: new_booking_path, method: :get) do |form| %>
+<%= render partial: 'available_flights', locals: { form: form, flights: @flights, num_passengers: @num_passengers } %>
+<% end %>

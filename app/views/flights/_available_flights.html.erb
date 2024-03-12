@@ -1,22 +1,33 @@
 <table class="available_flights_table">
   <thead>
     <tr>
-      <td>Flight ID</td>
       <td>Departure Airport</td>
       <td>Arrival Airport </td>
       <td>Start Day</td>
       <td>Flight Duration</td>
+      <td>Flight ID</td>
     </tr>
   </thead>
   <tbody>
     <% flights.each do |flight| %>
     <tr>
-      <td><%= flight.id %></td>
       <td><%= flight.departure_airport.code %></td>
       <td><%= flight.arrival_airport.code %></td>
       <td><%= flight.start_date %></td>
       <td><%= flight.duration %></td>
+      <td>
+        <div>
+          <%= form.radio_button :selected_flight, flight.id %>
+          <%= form.label :flight_id, flight.id %>
+        </div>
+      </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= form.hidden_field :num_passengers, value: num_passengers || 1 %>
+
+<div>
+  <%= form.submit "Continue to Booking"%>
+</div>
