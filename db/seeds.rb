@@ -7,21 +7,81 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Airport.create(code: 'SFO')
-Airport.create(code: 'NYC')
-Airport.create(code: 'LAX')
-Airport.create(code: 'ORD')
+Flight.delete_all
+Airport.delete_all
 
-flight1 = Flight.create(
-  departure_airport: Airport.find_by(code: 'SFO'),
-  arrival_airport: Airport.find_by(code: 'NYC'),
-  start_date: Time.now + 1.day,
-  duration: 300 # in minutes
-)
+codes = ['NYC', 'MUC', 'HH', 'CHCH', 'AUK']
 
-flight2 = Flight.create(
-  departure_airport: Airport.find_by(code: 'LAX'),
-  arrival_airport: Airport.find_by(code: 'ORD'),
-  start_date: Time.now + 2.day,
-  duration: 270 # in minutes
-)
+airports = codes.map do |code|
+  Airport.create(code: code)
+end
+
+# Create Flights data
+flights = []
+# NYC - MUC
+flights_data = []
+5.times do |i|
+    flights_data << {
+        start_date: Date.today + i.days,
+        duration: 8
+    }
+end
+flights += flights_data.each do |flight_data|
+    Flight.create(
+      start_date: flight_data[:start_date],
+      duration: flight_data[:duration],
+      departure_airport: Airport.find_by(code: 'NYC'),
+      arrival_airport: Airport.find_by(code: 'MUC')
+    )
+end
+
+# NYC - AUK
+flights_data = []
+5.times do |i|
+    flights_data << {
+        start_date: Date.today + i.days,
+        duration: 18
+    }
+end
+flights += flights_data.each do |flight_data|
+    Flight.create(
+      start_date: flight_data[:start_date],
+      duration: flight_data[:duration],
+      departure_airport: Airport.find_by(code: 'NYC'),
+      arrival_airport: Airport.find_by(code: 'AUK')
+    )
+end
+
+flights_data = []
+# HH - MUC
+5.times do |i|
+    flights_data << {
+        start_date: Date.today + i.days,
+        duration: 1
+    }
+end
+flights += flights_data.each do |flight_data|
+    Flight.create(
+      start_date: flight_data[:start_date],
+      duration: flight_data[:duration],
+      departure_airport: Airport.find_by(code: 'HH'),
+      arrival_airport: Airport.find_by(code: 'MUC')
+    )
+end
+
+flights_data = []
+# HH - CHCH
+5.times do |i|
+    flights_data << {
+        start_date: Date.today + i.days,
+        duration: 32
+    }
+end
+flights += flights_data.each do |flight_data|
+    Flight.create(
+      start_date: flight_data[:start_date],
+      duration: flight_data[:duration],
+      departure_airport: Airport.find_by(code: 'HH'),
+      arrival_airport: Airport.find_by(code: 'CHCH')
+    )
+end
