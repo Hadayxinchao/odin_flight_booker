@@ -15,27 +15,43 @@ class FlightsController < ApplicationController
 
   def query_flights
     flights_query = []
+    is_searched = false
     if params[:departure_airport_id].present?
-      if flights_query.any?
-        flights_query = flights_query.where(departure_airport_id: params[:departure_airport_id])
+      if is_searched && flights_query.empty?
+        return nil
       else
-        flights_query = Flight.all.where(departure_airport_id: params[:departure_airport_id])
+        if flights_query.any?
+          flights_query = flights_query.where(departure_airport_id: params[:departure_airport_id])
+        else
+          flights_query = Flight.all.where(departure_airport_id: params[:departure_airport_id])
+        end
+        is_searched = true
       end
     end
 
     if params[:arrival_airport_id].present?
-      if flights_query.any?
-        flights_query = flights_query.where(arrival_airport_id: params[:arrival_airport_id])
+      if is_searched && flights_query.empty?
+        return nil
       else
-        flights_query = Flight.all.where(arrival_airport_id: params[:arrival_airport_id])
+        if flights_query.any?
+          flights_query = flights_query.where(arrival_airport_id: params[:arrival_airport_id])
+        else
+          flights_query = Flight.all.where(arrival_airport_id: params[:arrival_airport_id])
+        end
+        is_searched = true
       end
     end
 
     if params[:start_date].present?
-      if flights_query.any?
-        flights_query = flights_query.where(start_date: params[:start_date])
+      if is_searched && flights_query.empty?
+        return nil
       else
-        flights_query = Flight.all.where(start_date: params[:start_date])
+        if flights_query.any?
+          flights_query = flights_query.where(start_date: params[:start_date])
+        else
+          flights_query = Flight.all.where(start_date: params[:start_date])
+        end
+        is_searched = true
       end
     end
     flights_query

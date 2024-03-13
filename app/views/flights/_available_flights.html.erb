@@ -1,30 +1,34 @@
-<table class="available_flights_table">
-  <thead>
-    <tr>
-      <th>Departure Airport</th>
-      <th>Arrival Airport </th>
-      <th>Start Day</th>
-      <th>Flight Duration</th>
-      <th>Flight ID</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% flights.each do |flight| %>
-    <tr>
-      <td><%= flight.departure_airport.code %></td>
-      <td><%= flight.arrival_airport.code %></td>
-      <td><%= flight.start_date %></td>
-      <td><%= flight.duration %></td>
-      <td>
-        <div>
-          <%= form.radio_button :selected_flight, flight.id %>
-          <%= form.label :flight_id, flight.id %>
-        </div>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if !flights.nil? %>
+  <table class="available_flights_table">
+    <thead>
+      <tr>
+        <th>Departure Airport</th>
+        <th>Arrival Airport </th>
+        <th>Start Day</th>
+        <th>Flight Duration</th>
+        <th>Flight ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.each do |flight| %>
+      <tr>
+        <td><%= flight.departure_airport.code %></td>
+        <td><%= flight.arrival_airport.code %></td>
+        <td><%= flight.start_date %></td>
+        <td><%= flight.duration %></td>
+        <td>
+          <div>
+            <%= form.radio_button :selected_flight, flight.id %>
+            <%= form.label :flight_id, flight.id %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No Result Found.</p>
+<% end %>
 
 <%= form.hidden_field :num_passengers, value: num_passengers || 1 %>
 

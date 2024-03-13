@@ -30,8 +30,8 @@ flights += flights_data.each do |flight_data|
     Flight.create(
       start_date: flight_data[:start_date],
       duration: flight_data[:duration],
-      departure_airport: Airport.find_by(code: 'NYC'),
-      arrival_airport: Airport.find_by(code: 'MUC')
+      departure_airport_id: Airport.find_by(code: 'NYC').id,
+      arrival_airport_id: Airport.find_by(code: 'MUC').id
     )
 end
 
@@ -47,8 +47,8 @@ flights += flights_data.each do |flight_data|
     Flight.create(
       start_date: flight_data[:start_date],
       duration: flight_data[:duration],
-      departure_airport: Airport.find_by(code: 'NYC'),
-      arrival_airport: Airport.find_by(code: 'AUK')
+      departure_airport_id: Airport.find_by(code: 'NYC').id,
+      arrival_airport_id: Airport.find_by(code: 'AUK').id
     )
 end
 
@@ -64,8 +64,8 @@ flights += flights_data.each do |flight_data|
     Flight.create(
       start_date: flight_data[:start_date],
       duration: flight_data[:duration],
-      departure_airport: Airport.find_by(code: 'HH'),
-      arrival_airport: Airport.find_by(code: 'MUC')
+      departure_airport_id: Airport.find_by(code: 'HH').id,
+      arrival_airport_id: Airport.find_by(code: 'MUC').id
     )
 end
 
@@ -81,7 +81,7 @@ flights += flights_data.each do |flight_data|
     Flight.create(
       start_date: flight_data[:start_date],
       duration: flight_data[:duration],
-      departure_airport: Airport.find_by(code: 'HH'),
-      arrival_airport: Airport.find_by(code: 'CHCH')
+      departure_airport_id: Airport.find_by(code: 'HH').id,
+      arrival_airport_id: Airport.find_by(code: 'CHCH').id
     )
 end
