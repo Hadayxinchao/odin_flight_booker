@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Flight Booker, <%= @passenger.name %></h1>
+    <p>Here is your booking information, <%= booking_url(@booking, host: 'flight@booker.com')%></p>
+    <p>Thanks for booking and have a great day!</p>
+  </body>
+</html>
