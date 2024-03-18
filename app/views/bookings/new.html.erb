@@ -1,29 +1,31 @@
-<%= link_to "Search flight", flights_path %>
-<h1>Personal Booking</h1>
+<div id="passenger-form" data-controller="toggle value content-loader"
+  data-content-loader-next-index="<%= @booking.passengers.length %>"
+  data-content-loader-insert-location="beforeend"
+  data-content-loader-url="/form_fields/booking_passengers/new"
+  data-toggle-class="hidden" data-value-value="1" >
+  <%= link_to "Search flight", flights_path %>
+  <h1>Personal Booking</h1>
 
-<%= render partial: 'flight_info', locals: { flight: @flight } %>
+  <%= render partial: 'flight_info', locals: { flight: @flight } %>
 
-<%= form_with model: @booking do |form| %>
-  <% @booking.passengers.each_with_index do |passenger, index| %>
-    <%= form.fields_for :passengers, passenger do |passenger_form| %>
-      <h3>Details for Passenger <%= "#{index + 1}" %></h3>
-      <div class="field">
-        <%= passenger_form.label :name %>
-        <%= passenger_form.text_field :name %>
-      </div>
-
-      <div class="field">
-        <%= passenger_form.label :email %>
-        <%= passenger_form.text_field :email %>
+  <%= form_with model: @booking do |form| %>
+    <% @booking.passengers.each_with_index do |passenger, index| %>
+      <div id="passenger-fields" data-target="content-loader.container">
+        <div class="fields">
+          <%= button_tag "Add Passegner", class: "new", data: { action: "content-loader#insert" } %>
+        </div>
+        <%= form.fields_for :passengers, passenger do |passenger_form| %>
+          <%= render partial: "passenger_fields", locals: { passenger_form: passenger_form, index: index}%>
+        <% end %>
       </div>
     <% end %>
+
+    <div class="fields">
+      <%= form.hidden_field :flight_id, value: params[:selected_flight] %>
+    </div>
+
+    <div class="action">
+      <%= form.submit %>
+    </div>
   <% end %>
-
-  <div class="field">
-    <%= form.hidden_field :flight_id, value: params[:selected_flight] %>
-  </div>
-
-  <div class="action">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

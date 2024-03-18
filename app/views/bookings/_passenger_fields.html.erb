@@ -1,0 +1,17 @@
+<div class="passenger-field" data-target="toggle.container" >
+  <h3>Details for Passenger <%= "#{index + 1}" %></h3>
+  <div class="field">
+    <%= passenger_form.label :name %>
+    <%= passenger_form.text_field :name %> 
+  </div>
+
+  <div class="field">
+    <%= passenger_form.label :email %>
+    <%= passenger_form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= button_tag "Delete", data: { action: "toggle#toggle value#update", "index": index } %>
+    <%= passenger_form.hidden_field :_destroy, value: 0, data: { target: "value.input" } %>
+  </div>
+</div>
